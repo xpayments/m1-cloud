@@ -1,0 +1,44 @@
+<?php
+// vim: set ts=2 sw=2 sts=2 et:
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @author     Qualiteam Software <info@x-cart.com>
+ * @category   Cdev
+ * @package    Cdev_XPaymentsConnector
+ * @copyright  (c) 2010-present Qualiteam software Ltd <info@x-cart.com>. All rights reserved
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+/**
+ * @see Cdev_XPaymentsCloud_Block_Customer_Payment_Card
+ */
+?>
+
+<p class="<?php echo $this->escapeHtml($this->getCardBlockClass()); ?>">
+  <span class="card-logo <?php echo $this->escapeHtml($this->getCardTypeClass()); ?>"></span>
+  <span class="card-number">
+    <?php echo $this->getCardNumber(); ?>
+  </span>
+  <span class="card-expiration">
+    <?php echo $this->getCardExpiration(); ?>
+  </span>
+</p>
+<?php if ($this->isShowWarning()): ?>
+  <ul class="<?php echo $this->escapeHtml($this->getWarningBlockClass()); ?>">
+  <li class="notice-msg">
+    <ul><li><?php echo $this->__('This card cannot be used during the checkout, it is either expired or disabled'); ?></li></ul>
+  </li>
+  </ul>
+<?php endif; ?>

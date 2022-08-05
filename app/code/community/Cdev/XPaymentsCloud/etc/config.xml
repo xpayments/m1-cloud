@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!-- vim: set ts=4 sw=4 sts=4 et: -->
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @author     Qualiteam Software <info@x-cart.com>
+ * @category   Cdev
+ * @package    Cdev_XPaymentsCloud
+ * @copyright  (c) 2010-present Qualiteam software Ltd <info@x-cart.com>. All rights reserved
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Cdev_XPaymentsCloud>
+            <version>1.0.2</version>
+        </Cdev_XPaymentsCloud>
+    </modules>
+    <global>
+        <models>
+            <xpayments_cloud>
+                <class>Cdev_XPaymentsCloud_Model</class>
+                <resourceModel>xpayments_cloud_mysql4</resourceModel>
+            </xpayments_cloud>
+            <sales>
+                <rewrite>
+                    <order_payment>Cdev_XPaymentsCloud_Model_Order_Payment</order_payment>
+                </rewrite>
+            </sales>
+        </models>
+        <helpers>
+            <xpayments_cloud>
+                <class>Cdev_XPaymentsCloud_Helper</class>   
+            </xpayments_cloud>
+        </helpers>
+        <resources>
+            <xpayments_cloud_setup>
+                <setup>
+                    <module>Cdev_XPaymentsCloud</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </xpayments_cloud_setup>
+            <xpayments_cloud_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </xpayments_cloud_write>
+            <xpayments_cloud_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </xpayments_cloud_read>
+        </resources>
+        <blocks>
+            <xpayments_cloud>
+                <class>Cdev_XPaymentsCloud_Block</class>
+            </xpayments_cloud>
+        </blocks>
+        <fieldsets>
+            <sales_copy_order_payment>
+                <cc_first6>
+                    <to_order>*</to_order>
+                </cc_first6>
+            </sales_copy_order_payment>
+        </fieldsets>
+    </global>
+    <frontend>
+        <routers>
+            <xpayments_cloud>
+                <use>standard</use>
+                <args>
+                    <module>Cdev_XPaymentsCloud</module>
+                    <frontName>xpayments_cloud</frontName>
+                </args>
+            </xpayments_cloud>
+            <customer>
+                <args>
+                    <modules>
+                        <xpayments_cloud before="Mage_Customer">Cdev_XPaymentsCloud_Customer</xpayments_cloud>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+        <translate>
+            <modules>
+                <Cdev_XPaymentsCloud>
+                    <files>
+                        <default>Cdev_XPaymentsCloud.csv</default>
+                    </files>
+                </Cdev_XPaymentsCloud>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <xpayments_cloud>
+                    <file>xpayments_cloud.xml</file>
+                </xpayments_cloud>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <xpayments_cloud>
+                <use>admin</use>
+                <args>
+                    <module>Cdev_XPaymentsCloud</module>
+                    <frontName>xpayments_cloud</frontName>
+                </args>
+            </xpayments_cloud>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <xpayments_cloud after="Mage_Adminhtml">Cdev_XPaymentsCloud_Adminhtml</xpayments_cloud>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <xpayments_cloud>
+                    <file>xpayments_cloud.xml</file>
+                </xpayments_cloud>
+            </updates>
+        </layout>
+        <events>
+            <controller_action_layout_render_before_adminhtml_sales_order_view>
+                <observers>
+                    <xpayments_cloud>
+                        <class>xpayments_cloud/adminhtml_observer</class>
+                        <method>addAntifraudButtons</method>
+                    </xpayments_cloud>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_sales_order_view>
+        </events>
+        <translate>
+            <modules>
+                <Cdev_XPaymentsCloud>
+                    <files>
+                        <default>Cdev_XPaymentsCloud.csv</default>
+                    </files>
+                </Cdev_XPaymentsCloud>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <payment>        
+            <xpayments_cloud>
+                <active>1</active>
+                <connected>0</connected>
+                <model>xpayments_cloud/payment_cloud</model>
+                <allowspecific>0</allowspecific>
+                <payment_action>authorize_capture</payment_action>
+                <order_status>processing</order_status>
+                <title>Credit or Debit Card via X-Payments</title>
+            </xpayments_cloud>
+        </payment>
+    </default>
+</config>

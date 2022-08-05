@@ -1,0 +1,133 @@
+/**
+ vim: set ts=4 sw=4 sts=4 et:
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @author     Qualiteam Software <info@x-cart.com>
+ * @category   Cdev
+ * @package    Cdev_XPaymentsConnector
+ * @copyright  (c) 2010-present Qualiteam software Ltd <info@x-cart.com>. All rights reserved
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * Credit card types
+ */
+
+.xpayments-card.disabled {
+    opacity: 0.50;
+}
+
+.xpayments-card.disabled .mesages li ul li {
+    font-size: small;
+}
+
+.xpayments-card .card-logo {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("../images/card-types.png");
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    background-size: 40px auto;
+    width: 40px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    background-position: 0 0%;
+}
+
+.xpayments-card .card-logo.mc {
+    background-position: 0 10%;
+}
+
+.xpayments-card .card-logo.visa {
+    background-position: 0 20%;
+}
+
+.xpayments-card .card-logo.jcb {
+    background-position: 0 30%;
+}
+
+.xpayments-card .card-logo.amex {
+    background-position: 0 40%;
+}
+
+.xpayments-card .card-logo.dc {
+    background-position: 0 50%;
+}
+
+.xpayments-card .card-logo.paypal {
+    background-position: 0 60%;
+}
+
+.xpayments-card .card-logo.sw {
+    background-position: 0 70%;
+}
+
+.xpayments-card .card-logo.cup {
+    background-position: 0 80%;
+}
+
+.xpayments-card .card-logo.bc {
+    background-position: 0 90%;
+}
+
+#card-setup-form {
+    margin-top: 20px;
+}
+
+#card-setup-form #xpayments-iframe-container {
+    margin-top: 20px;
+}
+
+#xpayments-card-list-form .actions,
+#card-setup-form .actions {
+    margin-top: 20px;
+}
+
+#xpayments-iframe-container {
+    position: relative;
+}
+
+#xpayments-loader
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    min-height: 20px;
+    opacity: 0.9;
+    background: white;
+    z-index: 100000;
+}
+
+#xpayments-loader-icon
+{
+    background: url(../images/loader.gif) 50% 50% no-repeat;
+    height: 16px;
+    top: 50%;
+    position: relative;
+    margin: auto;
+}
+
+@supports (-webkit-appearance: -apple-pay-button) {
+  .apple-pay-button {
+    -webkit-appearance: -apple-pay-button;
+    overflow: hidden;
+    color: transparent !important;
+  }
+  .apple-pay-button span {
+    visibility: hidden;
+  }
+}

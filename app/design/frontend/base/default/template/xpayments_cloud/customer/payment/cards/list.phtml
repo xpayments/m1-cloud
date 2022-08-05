@@ -1,0 +1,80 @@
+<?php
+// vim: set ts=2 sw=2 sts=2 et:
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @author     Qualiteam Software <info@x-cart.com>
+ * @category   Cdev
+ * @package    Cdev_XPaymentsConnector
+ * @copyright  (c) 2010-present Qualiteam software Ltd <info@x-cart.com>. All rights reserved
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+/**
+ * @see Cdev_XPaymentsCloud_Block_Customer_Payment_Cards_List
+ */
+?>
+<div class="page-title">
+  <h1><?php echo Mage::helper('downloadable')->__('My Payment Cards') ?></h1>
+</div>
+
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+
+<form  id="xpayments-card-list-form" method="post" action="<?php echo $this->escapeUrl($this->getFormUrl()); ?>">
+
+<?php if ($this->hasCards()): ?>
+
+    <input type="hidden" name="remove_card_id" id="remove_card_id" value="" />
+
+    <table class="data-table" id="my-credit-cards-table">
+      <tbody>
+        <?php foreach ($this->getCards() as $card): ?>
+          <tr>
+            <td>
+              <?php echo $this->getCardHtml($card); ?>
+            </td>
+            <td>
+                <a href="javascript: void(0);" onclick="<?php echo $this->escapeHtml($this->getCardRemoveJsCode($card)); ?>" title="Remove Card" class="btn-remove btn-remove2">Remove item</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+  <?php else: ?>
+
+    <p><?php echo $this->__('You have no payment cards'); ?></p>
+
+  <?php endif; ?>
+
+  <div class="actions">
+    <?php if ($this->isShowAddCardButton()): ?>
+      <a href="<?php echo $this->escapeUrl($this->getAddCardUrl()); ?>" class="button" title="<?php echo $this->escapeHtml($this->__('Add Payment Card')); ?>">
+        <?php echo $this->escapeHtml($this->__('Add Payment Card')); ?>
+      </a>
+    <?php elseif ($this->isShowLimitReached()): ?>
+      <p><?php echo $this->escapeHtml($this->__('You\'ve reached the maximal amount of saved cards. If you want to add a new card, please remove the unused cards.')); ?></p>
+    <?php endif; ?>
+  </div>
+
+</form>
+
+  <div class="buttons-set">
+    <p class="back-link">
+      <a href="<?php echo $this->escapeUrl($this->getBackUrl()); ?>">
+        <small>&laquo;&nbsp;</small><?php echo $this->__('Back') ?>
+      </a>
+    </p>
+  </div>
+
