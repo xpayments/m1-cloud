@@ -195,7 +195,7 @@ class Cdev_XPaymentsCloud_Customer_Payment_CardsController extends Mage_Core_Con
                     ''
                 );
 
-            $redirectUrl = $response->redirectUrl ?? false;
+            $redirectUrl = isset($response->redirectUrl) ? $response->redirectUrl : false;
 
             if (!empty($redirectUrl)) {
 
