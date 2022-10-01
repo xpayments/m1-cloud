@@ -199,7 +199,7 @@ class Client
      * @return Response
      * @throws ApiException
      */
-    public function doRebill(string $refId, string $customerId, string $callbackUrl, string $xpid, array $cart)
+    public function doRebill($refId, $customerId, $callbackUrl, $xpid, array $cart)
     {
         $request = new Request($this->account, $this->apiKey, $this->secretKey);
 
