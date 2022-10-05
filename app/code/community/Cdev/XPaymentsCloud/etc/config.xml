@@ -24,7 +24,7 @@
 <config>
     <modules>
         <Cdev_XPaymentsCloud>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </Cdev_XPaymentsCloud>
     </modules>
     <global>
